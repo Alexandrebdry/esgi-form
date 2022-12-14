@@ -12,8 +12,11 @@ const initialData = {
   email: "test@test.fr"
 } ;
 
-const validate = () => {
+const validate = (data) => {
+  if(data.password !== data.passwordConfirmation)
+    return false ;
   return true ;
+
 } ;
 
 const options = Array.from({ length: 9 }, (_, i) => ({

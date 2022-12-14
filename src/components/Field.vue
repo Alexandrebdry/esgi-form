@@ -1,9 +1,10 @@
 <template>
-  <component
-      :is="props.as" :name="props.name"
-      @input="setData($event.target.value, name)" :value="formData[name]"
-      :modelValue="formData[name]" v-on:update:modelValue="editData"
-  />
+  <component v-if="typeof as === 'string'"
+      :is="as" :name="name"
+      @input="setData($event.target.value, name)" :value="formData[name]" />
+
+  <component v-else :is="as" :name="name"
+      :modelValue="formData[name]" v-on:update:modelValue="editData" />
 </template>
 
 <script setup>

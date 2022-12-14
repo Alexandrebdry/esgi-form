@@ -40,6 +40,7 @@ const submitMethod = () => {
     props.onSubmit(data.value) ;
   }
   else {
+    console.log("error") ;
     setError("Invalid form");
   }
 } ;
