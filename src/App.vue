@@ -17,7 +17,7 @@ const validate = (data) => {
   if (data.name.length < 3) {
     errors["name"] = "Name must be at least 3 characters long" ;
   }
-  if (data.email.length < 3) {
+  if (data.email.length < 10) {
     errors["email"] = "Email must be at least 3 characters long" ;
   }
   return errors;
@@ -37,8 +37,9 @@ const options = Array.from({ length: 9 }, (_, i) => ({
     :initialData="initialData"
     :validate="validate"
 
-    v-slot="{data, error, handleSubmit, isSubmitting}"
+    v-slot="{ error, handleSubmit, isSubmitting}"
     >
+
     <form @submit.prevent="handleSubmit">
       <Field :name="'name'" />
       <Field type="email" :name="'email'" />
@@ -46,6 +47,9 @@ const options = Array.from({ length: 9 }, (_, i) => ({
       <Field type="password" :name="'passwordConfirmation'" />
       <Field :as="Captcha" name="captcha" :options="options" />
       <button type="submit" :disabled="isSubmitting" >Submit</button>
+      <template v-for="err in error">
+        {{err}}
+      </template>
     </form>
   </FormProvider>
 
