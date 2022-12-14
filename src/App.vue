@@ -13,12 +13,15 @@ const initialData = {
 } ;
 
 const validate = (data) => {
-  if(data.password !== data.passwordConfirmation)
-    return false ;
-  return true ;
-
-} ;
-
+  const errors = [] ; 
+  if (data.name.length < 3) {
+    errors.push("Name is too short") ;
+  }
+  if (data.email.length < 3) {
+    errors.push("Email is too short") ;
+  }
+  return errors;
+};
 const options = Array.from({ length: 9 }, (_, i) => ({
   id: i,
   href: `https://picsum.photos/200?random=${i}`,

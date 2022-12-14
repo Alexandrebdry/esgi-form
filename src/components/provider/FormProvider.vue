@@ -7,7 +7,7 @@
 <script setup>
 import {ref, provide, onMounted, defineProps} from 'vue' ;
 import {
-  dataKey, setDatakey,  setIsSubmittingkey
+  dataKey, setDatakey
 } from "@/components/provider/FormProviderKeys";
 
 const props = defineProps({
@@ -35,13 +35,10 @@ onMounted(() => {
 }) ;
 
 const submitMethod = () => {
-  if (props.validate(data.value)) {
+  error.value = props.validate(data.value) ;
+  if (error.value.length === 0) {
     isSubmitting.value = true ;
     props.onSubmit(data.value) ;
-  }
-  else {
-    console.log("error") ;
-    setError("Invalid form");
   }
 } ;
 
@@ -51,19 +48,11 @@ const setData = (newData, fieldName) => {
 } ;
 
 const error = ref([]) ;
-const setError = (newError) => {
- error.value = newError ;
-} ;
-
 const isSubmitting = ref(false) ;
-const setIsSubmitting = (newIsSubmitting) => {
- isSubmitting.value = newIsSubmitting ;
-} ;
 
 
 
 provide(setDatakey,setData) ;
-provide(setIsSubmittingkey,setIsSubmitting) ;
 provide(dataKey,data) ;
 
 </script>
