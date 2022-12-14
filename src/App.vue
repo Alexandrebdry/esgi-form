@@ -13,12 +13,12 @@ const initialData = {
 } ;
 
 const validate = (data) => {
-  const errors = [] ; 
+  const errors = {} ;
   if (data.name.length < 3) {
-    errors.push("Name is too short") ;
+    errors["name"] = "Name must be at least 3 characters long" ;
   }
   if (data.email.length < 3) {
-    errors.push("Email is too short") ;
+    errors["email"] = "Email must be at least 3 characters long" ;
   }
   return errors;
 };

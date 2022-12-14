@@ -36,7 +36,7 @@ onMounted(() => {
 
 const submitMethod = () => {
   error.value = props.validate(data.value) ;
-  if (error.value.length === 0) {
+  if (Object.keys(error.value).length === 0) {
     isSubmitting.value = true ;
     props.onSubmit(data.value) ;
   }
