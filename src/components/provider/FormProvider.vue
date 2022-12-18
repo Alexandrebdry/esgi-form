@@ -35,10 +35,14 @@ onMounted(() => {
 }) ;
 
 const submitMethod = () => {
+  isSubmitting.value = true ;
   error.value = props.validate(data.value) ;
   if (Object.keys(error.value).length === 0) {
-    isSubmitting.value = true ;
     props.onSubmit(data.value) ;
+    //wait for 2 seconds
+    setTimeout(() => {
+      isSubmitting.value = false ;
+    }, 2000) ;
   }
 } ;
 

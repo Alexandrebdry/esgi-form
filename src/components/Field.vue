@@ -1,15 +1,20 @@
 <template>
   <component v-if="typeof as === 'string'"
-      :is="as" :name="name"
-      @input="setData($event.target.value, name)" :value="formData[name]" />
+    :is="as"
+    :name="name"
+      @input="setData($event.target.value, name)" :value="formData[name]" >
+    <slot />
+  </component>
 
   <component v-else :is="as" :name="name"
-      :modelValue="formData[name]" v-on:update:modelValue="editData" />
+      :modelValue="formData[name]" v-on:update:modelValue="editData" >
+    <slot />
+  </component>
 </template>
 
 <script setup>
 
-import {defineProps, inject, ref} from "vue";
+import {defineProps, inject} from "vue";
 import { setDatakey,dataKey } from "@/components/provider/FormProviderKeys";
 
 const props = defineProps({
